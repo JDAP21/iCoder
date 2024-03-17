@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+
+{% block title %} Home{% endblock title %}
+{%block homeactive %} active {% endblock homeactive %}
+
+
+{% block body %}
+
+<style>
+	:root {
+		--main: #7b4ee4;
+		--darkblue: #362078;
+		--black: #060606;
+		--white: #e7dff4;
+	}
+
+	* {
+		margin: 0px;
+		padding: 0px;
+		font-family: system-ui;
+	}
+
+	.clearfix {
+		clear: both;
+	}
+
+	header {
+		padding: 20px 0px;
+		box-shadow: 2px 2px 15px var(--black);
+	}
+
+	.container {
+		width: 1140px;
+		max-width: 100%;
+		margin: 0 auto;
+	}
+
+	.col-div-6 {
+		width: 50%;
+		float: left;
+	}
+
+	.logo {
+		font-weight: bold;
+		font-size: 25px;
+		color: var(--black);
+	}
+
+	.logo span {
+		color: var(--main);
+	}
+
+	.banner-section {
+		background: var(--main);
+		height: 400px;
+		overflow: hidden;
+	}
+
+	.heading {
+		color: var(--white);
+		font-size: 40px;
+		letter-spacing: 1px;
+		margin-top: 14%;
+	}
+
+	.p1 {
+		color: white;
+		width: 395px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		letter-spacing: 1px;
+		font-size: 14px;
+	}
+
+	.input-box {
+		box-shadow: 1px 7px 8px 0px #222121;
+		width: 360px;
+		border-radius: 50%;
+	}
+
+	.input-box input[type="text"] {
+		padding: 9px;
+		width: 265px;
+		border: none;
+		border-radius: 5px;
+		outline: none;
+	}
+
+	.input-box button {
+		padding: 10px 27px;
+		border-radius: 0px 5px 5px 0px;
+		border: none;
+		margin-left: -6px;
+		background: var(--darkblue);
+		color: white;
+		cursor: pointer;
+	}
+
+	.ban-img {
+		width: 350px;
+		margin-bottom: -50px;
+
+	}
+
+	.b-img {
+		width: 100%;
+		border-radius: 10px;
+	}
+
+	.heading1 {
+		margin-top: 20px;
+		color: var(--main);
+		font-size: 14px;
+		text-transform: uppercase;
+	}
+
+	.blog-heading {
+		font-size: 29px;
+		font-weight: bold;
+		margin-bottom: 20px;
+		color: var(--black);
+	}
+
+	.text {
+		font-size: 13px;
+		letter-spacing: 1px;
+		color: var(--black);
+		margin-bottom: 20px;
+	}
+
+	.name {
+		text-transform: uppercase;
+		font-weight: 600;
+		color: #a1a1a1;
+		font-size: 14px;
+	}
+
+	.lr-box {
+		padding: 10px 20px;
+
+	}
+
+	.b-img-1 {
+		width: 100%;
+		height: 160px;
+		border-radius: 10px;
+		margin-top: 7px;
+	}
+
+	.blog-heading-1 {
+		font-size: 20px;
+		font-weight: bold;
+		margin-bottom: 20px;
+		color: var(--black);
+	}
+
+	.line {
+		width: 100%;
+		margin-top: 15px;
+		border: none;
+		height: 1px;
+		background: #ddd;
+	}
+
+
+
+	
+</style>
+
+
+
+<section class="banner-section">
+	<div class="container">
+		<div class="col-div-6">
+			<h1 class="heading">Welcome To JD's Website</h1>
+			<p class="p1">Confused on which course to take? I have got you covered. Browse courses and find out the best
+				course for you. Its free! Code With Harry is my attempt
+				to teach basics and those coding techniques to people in short time which took me ages to learn. </p>
+			<a class="btn btn-primary btn-lg" href="/blog" role="button">Go to Blog</a>
+		</div>
+		<div class="col-div-6">
+			<br><br><br><br>
+			<div style="text-align: center;"><img src="static/img/jd7.jpg" class="ban-img"></div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</section>
+
+
+<section>
+	<div class="container">
+		<br><br>
+		<div class="col-div-6">
+			<div class="box-1">
+				<img src="static/img/jd5.jpg" class="b-img">
+				<h3 class="heading1">Travel</h3>
+				<p class="blog-heading">Beautiful Location For Travel</p>
+				<p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+					has been the Beautiful Location For Travel</p>
+				<p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+				<span class="name">Manoj Singh . SEP 21, 2021</span>
+			</div>
+		</div>
+		{% for post in allPosts %}
+		<div class="col-div-6">
+			<div class="lr-box">
+				<div class="col-div-6">
+					<h3 class="heading1">{{post.heading1}}</h3>
+					<p class="blog-heading-1"><a class="text-dark" href="/homePost{{post.slug}}">{{post.heading2}}</a></p>
+					<h3 class="mb-0"><a class="text-dark" href="/home2/{{post.slug}}">{{post.title}} </a> </h3>
+					<p class="text">{{post.content|safe |truncatechars:70}}</p>
+					<a href="/homePost{{post.slug}}" role="button" class="btn btn-primary">Continue reading</a>
+				</div>
+				<div class="col-div-6">
+					<img src="/media/{{post.image}}" class="b-img-1">
+				</div>
+				<div class="clearfix"></div>
+				<hr class="line">
+			</div>
+		</div>
+		{% endfor %}
+		<div class="clearfix"></div>
+	</div>
+</section>
+
+{% endblock %}
